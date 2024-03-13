@@ -1,0 +1,40 @@
+{
+  "title": "Example Project",
+  "description": "This is an example description",
+  "media": [
+    {
+      "type": "image",
+      "link": "https://upload.wikimedia.org/wikipedia/commons/d/d6/HKUMP45.JPG"
+    },
+    {
+      "type": "embed",
+      "link": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/onzmRmgD9w4?si=6Prau2vHLxreiL3T\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
+    }
+  ],
+  "author": "glassyCannon",
+  "tags": ["example", "step", "stl", "accessory"],
+  "datePublished": "2024-03-12",
+  "lastUpdated": "2024-03-12",
+  "version": "1.0",
+  "downloadLinks": [
+    {
+      "description": "Full Zip (Odysee)",
+      "link": "https://archive.org/download/ni-roms/roms/Atari%20-%202600.zip/Custer%27s%20Revenge%20%28USA%29.zip"
+    },
+    {
+      "description": "Mirror (Mega)",
+      "link": "https://archive.org/download/ni-roms/roms/Atari%20-%202600.zip/Dig%20Dug%20%28USA%29.zip"
+    }
+  ],
+  "devGroup": "BLC",
+  "otherLinks": [
+    {
+      "description": "Main Odysee Account",
+      "link": "https://www.google.com"
+    },
+    {
+      "description": "Youtube Page",
+      "link": "https://www.youtube.com/@PrintShootRepeat"
+    }
+  ]
+}

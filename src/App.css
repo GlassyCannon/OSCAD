@@ -1,0 +1,52 @@
+.app {
+  display: flex;
+}
+
+.app__sidebar {
+  flex: 0.2;
+  height: 100vh;
+  padding: 20px;
+}
+
+.app__page {
+  flex: 0.8;
+  padding: 20px;
+}
+
+.app__search {
+  margin-bottom: 20px;
+}
+
+.app__search > form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.app__search > form > input {
+  flex: 0.8;
+  padding: 10px;
+}
+
+.app__search > form > button {
+  flex: 0.2;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-container form {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.search-container button {
+  margin-left: 10px;
+}
+
+.searchbar-input {
+  flex-grow: 1;
+  margin-left: 10px;
+}
