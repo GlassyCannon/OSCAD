@@ -35,5 +35,16 @@ export async function getAllItemsFromLocalStorage() {
 
 export async function getItemFromLocalStorage(itemAuthor, itemName) {
     const allItems = await getAllItemsFromLocalStorage();
-    return allItems.find(item => item.author === itemAuthor && item.title === itemName);
+    // Create regex pattern to match non-alphanumeric characters
+    const pattern = /[^a-z0-9]/gi;
+
+    return allItems.find(item => {
+        // Replace non-alphanumeric characters with nothing before comparing
+        let comparableItemTitle = item.title.replace(pattern, '');
+        let comparableItemName = itemName.replace(pattern, '');
+        let comparableItemAuthor = item.author.replace(pattern, '');
+        let comparableAuthName = itemAuthor.replace(pattern, '');
+
+        return comparableItemAuthor === comparableAuthName && comparableItemTitle === comparableItemName;
+    });
 }

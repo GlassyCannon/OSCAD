@@ -8,6 +8,7 @@ export async function getAndUpdateTrackerList() {
     let localTrackerList = trackerList;
     let newItemList = [];
 
+    // Check if there is a tracker list in localStorage
     if (localStorage.getItem(LOCAL_STORAGE_TRACKER_LIST)) {
         let persistedTrackerList = LZString.decompressFromUTF16(localStorage.getItem(LOCAL_STORAGE_TRACKER_LIST));
         persistedTrackerList = await JSON.parse(persistedTrackerList);
@@ -31,8 +32,11 @@ export async function getAndUpdateTrackerList() {
                         // Fetch items in chunks of 10
                         let chunkPromise = temparray.map(itemUrl => getItemsFromWeb(itemUrl));
                         let chunkResult = await Promise.all(chunkPromise);
-                        // Flatten and merge with newItemList
-                        newItemList.push(...chunkResult.flat());
+                        // Flatten chunkResult until no Array objects left
+                        while (chunkResult.some(Array.isArray))
+                            chunkResult = [].concat(...chunkResult);
+                        // Merge with newItemList
+                        newItemList.push(...chunkResult);
                     }
                 } else {
                     console.log(`Tracker File ${trackerUrl} is badly formed.`);

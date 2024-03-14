@@ -11,6 +11,13 @@ const useStyles = makeStyles({
         position: 'fixed',
         bottom: '25px',
     },
+    card: {
+        maxWidth: 345,
+        margin: '10px',
+        height: '250px', // Set your required height here
+        width: '250px',
+        overflow: 'auto'
+    }
 });
 
 const MainTable = ({items = []}) => {
@@ -34,7 +41,7 @@ const MainTable = ({items = []}) => {
                     {paginatedItems.map((item, index) => {
                         const imageMedia = item.media.find(mediaItem => mediaItem.type === 'image');
                         return (
-                            <Card key={index} style={{ maxWidth: 345, margin: '10px' }}>
+                            <Card key={index} className={classes.card}>
                                 {imageMedia &&
                                     <CardMedia
                                         component="img"
