@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import Tooltip from "@material-ui/core/Tooltip";
 import RestorePageIcon from '@material-ui/icons/RestorePage';
+import LZString from "lz-string";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -88,8 +89,8 @@ const App = () => {
     useEffect(() => {
         if(isLoaded) {
             if(localStorage.getItem(LOCAL_STORAGE_ITEM_LIST)){
-                setItemData(JSON.parse(localStorage.getItem(LOCAL_STORAGE_ITEM_LIST)));
-                setShownItemData(JSON.parse(localStorage.getItem(LOCAL_STORAGE_ITEM_LIST)));
+                setItemData(JSON.parse(LZString.decompressFromUTF16(localStorage.getItem(LOCAL_STORAGE_ITEM_LIST))));
+                setShownItemData(JSON.parse(LZString.decompressFromUTF16(localStorage.getItem(LOCAL_STORAGE_ITEM_LIST))));
             }
         }
 

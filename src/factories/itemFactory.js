@@ -1,4 +1,5 @@
-import {LOCAL_STORAGE_ITEM_LIST, LOCAL_STORAGE_TRACKER_LIST} from "../constants";
+import {LOCAL_STORAGE_ITEM_LIST} from "../constants";
+import LZString from 'lz-string';
 
 export async function getItemFromWeb(itemUrl) {
     try {
@@ -18,7 +19,7 @@ export async function getAllItemsFromLocalStorage() {
     let localItems = [];
     //get the items from local storage, check if they exist
     if (localStorage.getItem(LOCAL_STORAGE_ITEM_LIST)) {
-        let localStorageItems = localStorage.getItem(LOCAL_STORAGE_ITEM_LIST);
+        let localStorageItems = LZString.decompressFromUTF16(localStorage.getItem(LOCAL_STORAGE_ITEM_LIST));
         localItems = await JSON.parse(localStorageItems);
     }
 

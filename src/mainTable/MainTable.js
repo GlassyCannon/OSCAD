@@ -2,17 +2,38 @@ import React, {useState} from "react";
 import '../App.css';
 import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import Pagination from '@material-ui/lab/Pagination';
+import { makeStyles } from '@material-ui/core/styles';
+
+const ITEMS_PER_PAGE = 6;
+const useStyles = makeStyles({
+    paginationContainer: {
+        position: 'fixed',
+        bottom: '25px',
+        left: '290px',
+        width: '100%',
+    },
+});
+
 const MainTable = ({items = []}) => {
+    const classes = useStyles();
+    const [page, setPage] = useState(1);
+    const handleChange = (event, value) => {
+        setPage(value);
+    };
+
     const getItemUrl = ({item}) => {
         let combinedName = item.author + '/' + item.title;
         return combinedName.split(' ').join('_');
     }
 
+    let paginatedItems = [...items].splice((page - 1) * ITEMS_PER_PAGE, ITEMS_PER_PAGE);
+
     return (
         <div className="app">
             <div className="app__page">
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
-                    {items.map((item, index) => {
+                    {paginatedItems.map((item, index) => {
                         const imageMedia = item.media.find(mediaItem => mediaItem.type === 'image');
                         return (
                             <Card key={index} style={{ maxWidth: 345, margin: '10px' }}>
@@ -37,41 +58,10 @@ const MainTable = ({items = []}) => {
                         );
                     })}
                 </div>
+                <div className={classes.paginationContainer}>
+                    <Pagination count={Math.ceil(items.length / ITEMS_PER_PAGE)} page={page} onChange={handleChange}/>
+                </div>
             </div>
-        </div>
-    );
-};
-
-const SearchBar = () => {
-    const [inputSearch, setInputSearch] = useState("");
-
-    const searchHandler = (event) => {
-        event.preventDefault();
-        console.log("Searching", inputSearch);
-        setInputSearch("");
-    };
-
-    return (
-        <div className="app__search">
-            <form>
-                <input
-                    value={inputSearch}
-                    onChange={(event) => setInputSearch(event.target.value)}
-                    type="text"
-                    placeholder="Search"
-                />
-                <button onClick={searchHandler} type="submit">
-                    Search
-                </button>
-            </form>
-        </div>
-    );
-};
-
-const Homepage = () => {
-    return (
-        <div className="app__homepage">
-            <h1>This is the homepage</h1>
         </div>
     );
 };

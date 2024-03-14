@@ -10,6 +10,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import AuthorSection from "./AuthorSection";
 import TagSection from "./TagSection";
 import GroupSection from "./GroupSection";
+import LZString from "lz-string";
+import {LOCAL_STORAGE_TRACKER_LIST} from "../constants";
 
 // Add your custom styles here
 const StyledTableCell = withStyles((theme) => ({
@@ -28,7 +30,7 @@ const Sidebar = ({ items, listClass, onTrackerListUpdate }) => {
     const [trackerLinks, setTrackerLinks] = useState([]);
 
     useEffect(() => {
-        const savedLinks = JSON.parse(localStorage.getItem('LOCAL_STORAGE_TRACKER_LIST'));
+        const savedLinks = JSON.parse(LZString.decompressFromUTF16(localStorage.getItem(LOCAL_STORAGE_TRACKER_LIST)));
         if (savedLinks) setTrackerLinks(savedLinks);
     }, []);
 
@@ -39,7 +41,7 @@ const Sidebar = ({ items, listClass, onTrackerListUpdate }) => {
     const onAddNewLink = () => {
         const newLinks = [...trackerLinks, newLink];
         setTrackerLinks(newLinks);
-        localStorage.setItem('LOCAL_STORAGE_TRACKER_LIST', JSON.stringify(newLinks));
+        localStorage.setItem('LOCAL_STORAGE_TRACKER_LIST', LZString.compressToUTF16(JSON.stringify(newLinks)));
         setNewLink('');
         setShowAddLink(false);
         onTrackerListUpdate();
@@ -77,7 +79,7 @@ const Sidebar = ({ items, listClass, onTrackerListUpdate }) => {
         const newLinks = [...trackerLinks];
         newLinks.splice(index, 1);
         setTrackerLinks(newLinks);
-        localStorage.setItem('LOCAL_STORAGE_TRACKER_LIST', JSON.stringify(newLinks));
+        localStorage.setItem('LOCAL_STORAGE_TRACKER_LIST', LZString.compressToUTF16(JSON.stringify(newLinks)));
         onTrackerListUpdate();
     };
 
