@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/OSCAD/static/css/main.e4bbe7fb.css",
-    "main.js": "/OSCAD/static/js/main.6ec32ea0.js",
+    "main.js": "/OSCAD/static/js/main.6b1a6e7b.js",
     "index.html": "/OSCAD/index.html",
     "main.e4bbe7fb.css.map": "/OSCAD/static/css/main.e4bbe7fb.css.map",
-    "main.6ec32ea0.js.map": "/OSCAD/static/js/main.6ec32ea0.js.map"
+    "main.6b1a6e7b.js.map": "/OSCAD/static/js/main.6b1a6e7b.js.map"
   },
   "entrypoints": [
     "static/css/main.e4bbe7fb.css",
-    "static/js/main.6ec32ea0.js"
+    "static/js/main.6b1a6e7b.js"
   ]
 }
