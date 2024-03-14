@@ -1,6 +1,6 @@
 import trackerList from '../trackerList.json'
 import {LOCAL_STORAGE_ITEM_LIST, LOCAL_STORAGE_TRACKER_LIST} from "../constants";
-import {getItemFromWeb} from "./itemFactory";
+import {getItemsFromWeb} from "./itemFactory";  // function name updated to match the below getItemFromWeb updates
 import LZString from 'lz-string';
 import exampleUserItem from "../userItems/exampleUserItem.json"
 
@@ -29,9 +29,10 @@ export async function getAndUpdateTrackerList() {
                     for (i=0,j=itemUrls.length; i<j; i+=chunk) {
                         temparray = itemUrls.slice(i,i+chunk);
                         // Fetch items in chunks of 10
-                        let chunkPromise = temparray.map(itemUrl => getItemFromWeb(itemUrl));
+                        let chunkPromise = temparray.map(itemUrl => getItemsFromWeb(itemUrl));
                         let chunkResult = await Promise.all(chunkPromise);
-                        newItemList.push(...chunkResult);
+                        // Flatten and merge with newItemList
+                        newItemList.push(...chunkResult.flat());
                     }
                 } else {
                     console.log(`Tracker File ${trackerUrl} is badly formed.`);

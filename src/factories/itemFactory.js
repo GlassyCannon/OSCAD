@@ -1,18 +1,25 @@
 import {LOCAL_STORAGE_ITEM_LIST} from "../constants";
 import LZString from 'lz-string';
 
-export async function getItemFromWeb(itemUrl) {
-    try {
-        let response = await fetch(itemUrl);
+export async function getItemsFromWeb(itemUrl) {
+    let urls = Array.isArray(itemUrl) ? itemUrl : [itemUrl];
 
-        if (!response.ok) {
-            console.log(`HTTP error on ${itemUrl}! status: ${response.status}`);
-        } else {
-            return await response.json();
+    let responses = [];
+
+    for (let url of urls) {
+        try {
+            let response = await fetch(url);
+            if (response.ok) {
+                responses.push(await response.json());
+            } else {
+                console.log(`HTTP error on ${url}! status: ${response.status}`);
+            }
+        } catch (error) {
+            console.log(`An error occurred while fetching the Item file ${url}: `, error);
         }
-    } catch (error) {
-        console.log(`An error occurred while fetching the Item file ${itemUrl}: ` , error);
     }
+
+    return responses;
 }
 
 export async function getAllItemsFromLocalStorage() {
