@@ -68,6 +68,15 @@ const App = () => {
     const [itemData, setItemData] = useState([]);
     const [shownItemData, setShownItemData] = useState([]);
 
+    const RedirectToRoot = () => {
+        const navigate = useNavigate();
+        useEffect(() => {
+            navigate("/");
+        }, [navigate]);
+
+        return null;
+    }
+
     const SidebarContainer = ({onTrackerListUpdate}) => {
         return (
             <div className={classes.appSidebar}>
@@ -156,7 +165,7 @@ const App = () => {
                                 :
                                 <Routes>
                                     <Route path='/' element={<Root items={shownItemData}/>}/>
-                                    <Route path='/OSCAD' element={<Root items={shownItemData}/>}/>
+                                    <Route path='/OSCAD' element={<RedirectToRoot />} />
                                     <Route path="/:author/:item_name" element={<ItemView />} />
                                     <Route path="/s/:filter/:value" element={<RootWithFilter />} />
                                 </Routes>

@@ -8,9 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const ITEMS_PER_PAGE = 6;
 const useStyles = makeStyles({
     paginationContainer: {
-        position: 'fixed',
-        bottom: '25px',
-        left: '290px',
+        position: 'relative',
+        bottom: '14px',
         width: '100%',
     },
 });
