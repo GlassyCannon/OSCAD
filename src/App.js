@@ -156,6 +156,7 @@ const App = () => {
                                 :
                                 <Routes>
                                     <Route path='/' element={<Root items={shownItemData}/>}/>
+                                    <Route path='/OSCAD' element={<Root items={shownItemData}/>}/>
                                     <Route path="/:author/:item_name" element={<ItemView />} />
                                     <Route path="/s/:filter/:value" element={<RootWithFilter />} />
                                 </Routes>

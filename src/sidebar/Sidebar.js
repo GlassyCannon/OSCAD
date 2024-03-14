@@ -106,7 +106,7 @@ const Sidebar = ({ items, listClass, onTrackerListUpdate }) => {
             <Button color="primary" variant="contained" onClick={handleOpen} style={{ marginTop: 'auto' }}>
                 Open Tracker List
             </Button>
-                <Dialog open={openModal} onClose={() => setOpenModal(false)}>
+                <Dialog open={openModal} onClose={() => setOpenModal(false)} maxWidth="lg">
                     <DialogTitle>
                         Tracker Links
                         <IconButton style={{ position: 'absolute', right: '10px', top: '10px' }} onClick={handleClose}>
