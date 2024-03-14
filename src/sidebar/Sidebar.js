@@ -30,7 +30,18 @@ const Sidebar = ({ items, listClass, onTrackerListUpdate }) => {
     const [trackerLinks, setTrackerLinks] = useState([]);
 
     useEffect(() => {
-        const savedLinks = JSON.parse(LZString.decompressFromUTF16(localStorage.getItem(LOCAL_STORAGE_TRACKER_LIST)));
+        let savedLinks;
+        try {
+            let decompressed = LZString.decompressFromUTF16(localStorage.getItem(LOCAL_STORAGE_TRACKER_LIST));
+            // Let's prevent JSON parsing when decompressed value is null
+            if (decompressed) {
+                savedLinks = JSON.parse(decompressed);
+            } else {
+                console.log("No links are found or the decompressed value is null.");
+            }
+        } catch (e) {
+            console.error("Error while decompressing and parsing the tracker link list:", e);
+        }
         if (savedLinks) setTrackerLinks(savedLinks);
     }, []);
 
